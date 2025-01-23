@@ -4,18 +4,17 @@ namespace Assi1
 {
     class HeavyObject
     {
+        public float Width;
+        public float Length;
+        public float Height;
+        public float Density;
+
         public HeavyObject(float width = 1000f, float length = 1000f, float height = 1000f, float density = 1f) {
             Width = width;
             Length = length;
             Height = height;
             Density = density;
         }
-
-        public float Width;
-        public float Length;
-        public float Height;
-
-        public float Density;
         
         // Volume = Width * Height * Length
         public float Volume {
