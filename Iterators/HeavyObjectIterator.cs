@@ -23,15 +23,7 @@ namespace Assi1.Iterators
         // Get previous element if exists
         public HeavyObject GetPrevious()
         {
-
-            if (index == 0)
-            {
-                return null;
-            }
-            else
-            {
-                return list.At(index - 1);
-            }
+            return index == 0 ? null : list.At(index - 1);
         }
 
         public bool IsDone()
