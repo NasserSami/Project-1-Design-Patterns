@@ -46,9 +46,9 @@ namespace Assi1
 
             // Create our Flyweight Factory and create the Flyweights out of it
             FlyweightFactory fw = new FlyweightFactory();
-            IStrategy bottomWeight = fw.GetFlyweight("bottomWeight", (IStrategy)new BottomWeightStrategy());
-            IStrategy pyramid = fw.GetFlyweight("pyramid", (IStrategy)new PyramidStrategy());
-            IStrategy topple = fw.GetFlyweight("topple", (IStrategy)new ToppleStrategy());
+            IStrategy bottomWeight = fw.GetFlyweight(FlyweightFactory.StrategyType.BottomWeight, new BottomWeightStrategy());
+            IStrategy pyramid = fw.GetFlyweight(FlyweightFactory.StrategyType.Pyramid, new PyramidStrategy());
+            IStrategy topple = fw.GetFlyweight(FlyweightFactory.StrategyType.Topple, new ToppleStrategy());
 
             // Print results
             Console.WriteLine("BottomWeight - ListA: " + bottomWeight.ExecuteStrategy(listA));

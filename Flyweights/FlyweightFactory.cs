@@ -10,21 +10,28 @@ namespace Assi1.Flyweights
     // FlyweightFactory.cs - Creates and manages strategy flyweights
     public class FlyweightFactory
     {
-        private Dictionary<string, IStrategy> Strategies;
+        // Available strategy types
+        public enum StrategyType { Pyramid, Topple, BottomWeight }
+
+        // Strategy cache
+        private Dictionary<StrategyType, IStrategy> strategies;
 
         public FlyweightFactory()
         {
-            Strategies = new Dictionary<string, IStrategy>();
+            strategies = new Dictionary<StrategyType, IStrategy>();
         }
 
-        // Returns existing strategy or creates new one
-        public IStrategy GetFlyweight( string key, IStrategy defaultStrategy )
+        // Gets existing strategy or adds new one if provided
+        public IStrategy GetFlyweight( StrategyType type, IStrategy newStrategy = null )
         {
-            if (Strategies.ContainsKey(key))
-                return Strategies[key];
+            // Add new strategy if provided and doesn't exist
+            if (!strategies.ContainsKey(type) && newStrategy != null)
+                strategies[type] = newStrategy;
 
-            Strategies.Add(key, defaultStrategy);
-            return defaultStrategy;
+            // Return existing or throw if not found
+            return strategies.ContainsKey(type)
+                ? strategies[type]
+                : throw new ArgumentException($"Strategy {type} not found");
         }
     }
 }
