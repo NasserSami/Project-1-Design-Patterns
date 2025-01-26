@@ -5,10 +5,4 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Aggregates\" />
-    <Folder Include="Flyweights\" />
-    <Folder Include="Strategies\" />
-  </ItemGroup>
-
 </Project>
