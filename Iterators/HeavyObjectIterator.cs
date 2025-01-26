@@ -21,14 +21,11 @@ namespace Assi1.Iterators
         }
 
         // Get previous element if exists
-
         public HeavyObject GetPrevious()
         {
-            Exception ex = new IndexOutOfRangeException("No previous element.");
 
             if (index == 0)
             {
-                Console.WriteLine(ex.Message);
                 return null;
             }
             else
