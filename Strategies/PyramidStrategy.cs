@@ -10,35 +10,22 @@ namespace Assi1.Strategies
     // PyramidStrategy.cs - Evaluates if objects form pyramid shape
     public class PyramidStrategy : IStrategy
     {
-        // Returns positive score for pyramid shape (decreasing area), negative for inverse
-        public float ExecuteStrategy( HeavyObjectList heavyObjectsList )
+        public float ExecuteStrategy( HeavyObjectList list )
         {
-            // easier adjacent element comparison
-            var objects = new List<HeavyObject>();
-            var iterator = heavyObjectsList.CreateIterator();
+            // Initialize iterator and score
+            var it = list.CreateIterator();
+            float score = 0;
 
-            // Collect all objects
-            while (!iterator.IsDone())
+            // Compare each object's area to previous
+            while (!it.IsDone())
             {
-                objects.Add(iterator.Current());
-                iterator.Next();
+                var prev = it.GetPrevious();
+                if (prev != null)
+                    // Increment score if current area < previous (pyramid shape)
+                    score += it.Current().Width * it.Current().Length < prev.Width * prev.Length ? 1 : -1;
+                it.Next();
             }
-
-            if (objects.Count <= 1)
-                return 0.0f;
-
-            float stack = 0.0f;
-
-            // Compare adjacent elements' areas
-            for (int i = 1; i < objects.Count; i++)
-            {
-                double currentArea = objects[i].Width * objects[i].Length;
-                double previousArea = objects[i - 1].Width * objects[i - 1].Length;
-
-                stack += currentArea < previousArea ? 1.0f : -1.0f;
-            }
-
-            return stack;
+            return score;
         }
     }
 }

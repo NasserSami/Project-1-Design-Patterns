@@ -10,33 +10,23 @@ namespace Assi1.Strategies
     // ToppleStrategy.cs - Evaluates stack stability based on object areas
     public class ToppleStrategy : IStrategy
     {
-        // Returns positive score for unstable stack, negative for stable
-        public float ExecuteStrategy( HeavyObjectList heavyObjectsList )
+        public float ExecuteStrategy( HeavyObjectList list )
         {
-            float stack = 0.0f;
-            IIterator iterator = heavyObjectsList.CreateIterator();
+            // Initialize iterator and score
+            var it = list.CreateIterator();
+            float score = 0;
 
-            // Get first object if it exists
-            if (iterator.IsDone())
-                return stack;
-
-            HeavyObject previousObject = iterator.Current();
-            iterator.Next();
-
-            // Compare areas sequentially
-            while (!iterator.IsDone())
+            // Compare each object's volume*mass to previous
+            while (!it.IsDone())
             {
-                HeavyObject currentObject = iterator.Current();
-                double currentArea = currentObject.Width * currentObject.Length;
-                double previousArea = previousObject.Width * previousObject.Length;
-
-                stack += currentArea < previousArea ? -1.0f : 1.0f;
-
-                previousObject = currentObject;
-                iterator.Next();
+                var prev = it.GetPrevious();
+                if (prev != null)
+                    // Increment score if current < previous (less stable)
+                    score += it.Current().Width * it.Current().Length * it.Current().Mass <
+                            prev.Width * prev.Length * prev.Mass ? 1 : -1;
+                it.Next();
             }
-
-            return stack;
+            return score;
         }
     }
 }
