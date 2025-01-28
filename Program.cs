@@ -1,3 +1,11 @@
+/*
+Name:    Project-1-Design-Patterns-master
+Purpose: Meets requirements of INFO-5125 Project 1 assignment.
+         Implements use of different algorithms to analyze stacks of boxes
+Authors: Sam Nasser, Haider Rizvi, and Michael Root
+Date:    2025.01.28
+*/
+
 using Assi1.Aggregates;
 using Assi1.Flyweights;
 using Assi1.Strategies;

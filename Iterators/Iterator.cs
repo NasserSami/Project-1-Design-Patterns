@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Assi1
+﻿namespace Assi1
 {
     // Interface for traversing a collection of HeavyObjects
     public interface IIterator
