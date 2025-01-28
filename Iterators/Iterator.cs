@@ -1,5 +1,3 @@
-﻿using System;
-
 namespace Assi1
 {
     // Interface for traversing a collection of HeavyObjects
